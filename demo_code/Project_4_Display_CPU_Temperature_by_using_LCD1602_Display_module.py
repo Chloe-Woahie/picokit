@@ -4,12 +4,17 @@ from machine_i2c_lcd import I2cLcd
 import utime
 
 
-i2c = I2C(0, scl=Pin(9), sda=Pin(8), freq=400000)
+i2c = I2C(0, scl=Pin(1), sda=Pin(0), freq=400000)
+
+utime.sleep_ms(100)
 
 addr = i2c.scan()[0]
 # print(hex(addr[0]))
 
-lcd = I2cLcd(i2c, addr, 2, 16)
+utime.sleep_ms(100)
+lcd = I2cLcd(i2c, hex(addr[0]), 2, 16)
+
+utime.sleep_ms(100)
 
 sensor_temp = ADC(4)
 conversion_factor = 3.3 / (65535)
